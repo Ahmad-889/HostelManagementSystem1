@@ -2,17 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#f5f5f5"
+    android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:paddingTop="32dp">
+
+    <!-- Options Menu Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/studentToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:title=""
+        app:layout_collapseMode="pin"/>
 
     <!-- HMS Heading -->
     <TextView
         android:text="Hostel Management System"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#1E88E5"
+        android:textColor="?attr/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"/>
@@ -29,7 +39,7 @@
             android:id="@+id/tvWelcomeStudent"
             android:text="Welcome, Student"
             android:textSize="20sp"
-            android:textColor="#333"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
@@ -37,8 +47,8 @@
         <Button
             android:id="@+id/btnMyApplications"
             android:text="My Applications"
-            android:backgroundTint="#1E88E5"
-            android:textColor="#fff"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="?android:attr/textColorPrimaryInverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -48,7 +58,7 @@
         android:text="Available Rooms"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#1E293B"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_marginTop="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -60,7 +70,7 @@
         android:layout_height="wrap_content"
         android:text="No rooms available at the moment"
         android:textSize="16sp"
-        android:textColor="#666666"
+        android:textColor="?android:attr/textColorSecondary"
         android:textAlignment="center"
         android:layout_marginTop="48dp"
         android:visibility="gone"/>

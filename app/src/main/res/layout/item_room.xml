@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="?android:attr/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:text="Room 101"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#1E88E5"/>
+                android:textColor="?attr/colorPrimary"/>
 
             <TextView
                 android:id="@+id/tvAvailability"
@@ -66,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="Block: A"
                     android:textSize="14sp"
-                    android:textColor="#666666"/>
+                    android:textColor="?android:attr/textColorSecondary"/>
 
                 <TextView
                     android:id="@+id/tvFloor"
@@ -75,7 +76,7 @@
                     android:layout_marginTop="4dp"
                     android:text="Floor: 1"
                     android:textSize="14sp"
-                    android:textColor="#666666"/>
+                    android:textColor="?android:attr/textColorSecondary"/>
 
                 <TextView
                     android:id="@+id/tvRoomType"
@@ -84,7 +85,7 @@
                     android:layout_marginTop="4dp"
                     android:text="Type: Single"
                     android:textSize="14sp"
-                    android:textColor="#666666"/>
+                    android:textColor="?android:attr/textColorSecondary"/>
             </LinearLayout>
 
             <!-- Right Column -->
@@ -100,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:text="Capacity: 2/4"
                     android:textSize="14sp"
-                    android:textColor="#666666"/>
+                    android:textColor="?android:attr/textColorSecondary"/>
 
                 <TextView
                     android:id="@+id/tvRent"
@@ -109,7 +110,7 @@
                     android:layout_marginTop="4dp"
                     android:text="Rent: Rs. 5000"
                     android:textSize="14sp"
-                    android:textColor="#666666"/>
+                    android:textColor="?android:attr/textColorSecondary"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -121,8 +122,8 @@
             android:layout_marginTop="8dp"
             android:text="Facilities: AC, WiFi, Attached Bath"
             android:textSize="13sp"
-            android:textColor="#888888"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textColor="?android:attr/textColorSecondary"/>
 
         <!-- Action Buttons -->
         <LinearLayout
@@ -137,8 +138,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Edit"
-                android:textColor="#fff"
-                android:backgroundTint="#FFA726"
+                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:backgroundTint="?attr/colorSecondary"
                 android:layout_marginEnd="8dp"/>
 
             <Button
@@ -146,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Delete"
-                android:textColor="#fff"
+                android:textColor="?android:attr/textColorPrimaryInverse"
                 android:backgroundTint="#EF5350"/>
 
             <Button
@@ -154,10 +155,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Apply"
-                android:textColor="#fff"
-                android:backgroundTint="#1E88E5"
+                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:backgroundTint="?attr/colorPrimary"
                 android:visibility="gone"/>
-
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
