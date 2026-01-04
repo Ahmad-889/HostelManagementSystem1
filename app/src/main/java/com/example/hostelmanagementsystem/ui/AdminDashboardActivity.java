@@ -1,11 +1,17 @@
 package com.example.hostelmanagementsystem.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +37,15 @@ public class AdminDashboardActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences prefs = getSharedPreferences("app_settings", MODE_PRIVATE);
+        int savedMode = prefs.getInt(
+                "theme_mode",
+                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        );
+
+        AppCompatDelegate.setDefaultNightMode(savedMode);
+
         setContentView(R.layout.activity_admin_dashboard);
 
         tvWelcome = findViewById(R.id.tvWelcome);
@@ -46,6 +61,9 @@ public class AdminDashboardActivity extends AppCompatActivity
 
 
         controller = new HMSController();
+
+        Toolbar toolbar = findViewById(R.id.adminToolbar);
+        setSupportActionBar(toolbar);
 
         // Setup RecyclerView
         rvApplications.setLayoutManager(new LinearLayoutManager(this));
@@ -108,5 +126,53 @@ public class AdminDashboardActivity extends AppCompatActivity
         loadPendingApplications(); // reload pending list
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_logout) {
+            startActivity(new Intent(this, StudentLoginActivity.class));
+            finish();
+            return true;
+        }
+
+        if (id == R.id.menu_portfolio) {
+            Intent intent = new Intent(this, PortfolioActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.menu_theme) {
+            int currentNightMode = AppCompatDelegate.getDefaultNightMode();
+
+            if (currentNightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                saveThemeMode(AppCompatDelegate.MODE_NIGHT_NO);
+                Toast.makeText(this, "Light mode activated", Toast.LENGTH_SHORT).show();
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                saveThemeMode(AppCompatDelegate.MODE_NIGHT_YES);
+                Toast.makeText(this, "Dark mode activated", Toast.LENGTH_SHORT).show();
+            }
+
+            recreate();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void saveThemeMode(int mode) {
+        getSharedPreferences("app_settings", MODE_PRIVATE)
+                .edit()
+                .putInt("theme_mode", mode)
+                .apply();
+    }
 
 }

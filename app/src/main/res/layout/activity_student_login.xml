@@ -3,18 +3,36 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/ivLoginLogo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo"/>
+    </RelativeLayout>
 
     <TextView
         android:text="Student Login"
         android:textSize="22sp"
+        android:textStyle="bold"
         android:layout_marginBottom="20dp"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/etRegNo"
         android:hint="Registration Number"
+        android:backgroundTint="?android:attr/colorAccent"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textColorHint="?android:attr/textColorHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -22,6 +40,9 @@
         android:id="@+id/etPassword"
         android:hint="Password"
         android:inputType="textPassword"
+        android:backgroundTint="?android:attr/colorAccent"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textColorHint="?android:attr/textColorHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -29,12 +50,12 @@
         android:id="@+id/btnLogin"
         android:text="Login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:id="@+id/tvRegister"
         android:text="Don’t have an account? Register here"
-        android:textColor="#1E88E5"
         android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -42,7 +63,6 @@
     <TextView
         android:id="@+id/tvAdminLogin"
         android:text="Login as Admin"
-        android:textColor="#1E88E5"
         android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

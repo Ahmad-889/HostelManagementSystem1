@@ -2,28 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#f5f5f5"
+    android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:paddingTop="32dp">
 
-    <!-- HMS Heading -->
-    <TextView
-        android:id="@+id/tvHMSHeading"
-        android:text="Hostel Management System"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#1E88E5"
-        android:layout_width="wrap_content"
+    <!-- Options Menu Toolbar with HMS Heading-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/adminToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:background="?android:attr/colorBackground"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hostel Management System"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/colorAccent"
+            android:layout_gravity="left" />
+
+    </androidx.appcompat.widget.Toolbar>
+
 
     <!-- Welcome Message -->
     <TextView
         android:id="@+id/tvWelcome"
         android:text="Welcome, Admin"
         android:textSize="20sp"
-        android:textColor="#333333"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -46,6 +58,7 @@
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
+            app:cardBackgroundColor="?android:attr/colorBackgroundFloating"
             android:foreground="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -60,7 +73,7 @@
                 <TextView
                     android:text="Applications"
                     android:textSize="16sp"
-                    android:textColor="#333"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -74,6 +87,7 @@
             android:layout_marginStart="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
+            app:cardBackgroundColor="?android:attr/colorBackgroundFloating"
             android:foreground="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true">
@@ -88,7 +102,7 @@
                 <TextView
                     android:text="Rooms"
                     android:textSize="16sp"
-                    android:textColor="#333"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -101,7 +115,7 @@
         android:text="Pending Applications"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#1E293B"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

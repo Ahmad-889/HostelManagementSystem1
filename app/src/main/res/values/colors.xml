@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary / Accent -->
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryVariant">#00796B</color>
+    <color name="colorAccent">#4DB6AC</color>
+
+    <!-- Background -->
+    <color name="colorBackground">#F4F6F8</color>
+
+    <!-- Card -->
+    <color name="colorCard">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="textPrimary">#263238</color>
+    <color name="textSecondary">#90A4AE</color>
+
+    <!-- Buttons -->
+    <color name="buttonPrimary">#1E88E5</color>
+    <color name="buttonDelete">#EF5350</color>
 </resources>
+

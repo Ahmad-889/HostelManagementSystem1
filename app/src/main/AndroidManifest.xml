@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".HMSApp"
         android:allowBackup="true"
@@ -27,9 +30,12 @@
         <activity android:name=".ui.AdminLoginActivity" />
         <activity android:name=".ui.AdminDashboardActivity" />
         <activity android:name=".ui.StudentDashboardActivity" />
-        <activity android:name=".ui.ApplyHostelActivity" />
         <activity android:name=".ui.AdminRoomsActivity" />
         <activity android:name=".ui.AdminApplicationsActivity" />
+        <activity
+            android:name=".ui.PortfolioActivity"
+            android:label="Portfolio"
+            android:parentActivityName=".ui.StudentDashboardActivity" />
     </application>
 
 </manifest>

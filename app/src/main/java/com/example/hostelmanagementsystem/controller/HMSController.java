@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 
 import com.example.hostelmanagementsystem.callbacks.CountCallback;
 import com.example.hostelmanagementsystem.data.FakeDatabase;
+import com.example.hostelmanagementsystem.enums.Facility;
+import com.example.hostelmanagementsystem.enums.RoomType;
 import com.example.hostelmanagementsystem.model.Room;
 import com.google.firebase.database.*;
 import com.example.hostelmanagementsystem.data.FirebaseManager;
@@ -20,6 +22,19 @@ import com.example.hostelmanagementsystem.model.Student;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+ import java.io.BufferedInputStream;
+ import java.io.IOException;
+ import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+ import java.net.SocketTimeoutException;
+ import java.net.URL;
+ import java.util.Scanner;
+ import org.json.JSONArray;
+ import org.json.JSONException;
+ import org.json.JSONObject;
+ import android.os.AsyncTask;
+ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -395,7 +410,7 @@ public class HMSController {
                     }
                 });
     }
-
+    //View available rooms
     public void viewAvailableRooms(RoomListCallback callback) {
         FirebaseManager.getRootRef()
                 .child("rooms")
@@ -422,10 +437,11 @@ public class HMSController {
                     }
                 });
     }
-
+    //Get Room Counts
     public void getAllRoomsCount(CountCallback callback) {
         firebaseManager.getAllRoomsCount(callback);
     }
+
     public void viewStudentApplications(
             String studentId,
             ApplicationListCallback callback
@@ -451,6 +467,155 @@ public class HMSController {
                         callback.onResult(new ArrayList<>());
                     }
                 });
+    }
+
+    public void addSampleRooms(OperationCallback callback) {
+        String apiUrl = "https://jsonplaceholder.typicode.com/posts?_limit=2";
+        new AddSampleRoomsAsyncTask(callback).execute(apiUrl);
+    }
+
+    // AsyncTask class for consuming JSON web service
+    private class AddSampleRoomsAsyncTask extends AsyncTask<String, Void, String> {
+
+        private OperationCallback callback;
+
+        public AddSampleRoomsAsyncTask(OperationCallback callback) {
+            this.callback = callback;
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return requestWebService(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null) {
+                parseAndSaveRooms(result);
+            } else {
+                callback.onComplete(false);
+            }
+        }
+    }
+
+    // Method to request data from web service using HttpURLConnection
+    private static String requestWebService(String serviceUrl) {
+        HttpURLConnection urlConnection = null;
+        try {
+            // Create connection
+            URL urlToRequest = new URL(serviceUrl);
+            urlConnection = (HttpURLConnection) urlToRequest.openConnection();
+
+            // Set timeouts
+            urlConnection.setConnectTimeout(15000);  // 15 seconds
+            urlConnection.setReadTimeout(10000);     // 10 seconds
+
+            // Get JSON data
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+            // Convert InputStream into String
+            Scanner scanner = new Scanner(in);
+            String strJSON = scanner.useDelimiter("\\A").next();
+            scanner.close();
+
+            return strJSON;
+
+        } catch (MalformedURLException e) {
+            Log.e("HMSController", "URL is invalid: " + e.getMessage());
+        } catch (SocketTimeoutException e) {
+            Log.e("HMSController", "Data retrieval timed out: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e("HMSController", "Could not read response body: " + e.getMessage());
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+        return null;
+    }
+
+    // Method to parse JSON and save rooms to Firebase
+    private void parseAndSaveRooms(String jsonResponse) {
+        try {
+            JSONArray rootArray = new JSONArray(jsonResponse);
+            List<Room> rooms = new ArrayList<>();
+
+            // Parse JSON array and create Room objects
+            for (int i = 0; i < rootArray.length(); i++) {
+                JSONObject jsonObject = rootArray.getJSONObject(i);
+
+                // Extract data from API response
+                int id = jsonObject.optInt("id", i + 1);
+                int userId = jsonObject.optInt("userId", 1);
+
+                // Map API data to Room object
+                String roomNumber = "Room-" + id;
+                String hostelBlock = "Block-" + ((userId % 3) + 1);
+                int floor = (id % 4) + 1;
+                int capacity = (userId % 2) + 2;  // 2 or 3
+                RoomType roomType = capacity == 2 ? RoomType.SINGLE : RoomType.SHARED;
+                double hostelRent = 5000.0 + (id * 500);
+
+                // Create facilities list
+                List<Facility> facilities = new ArrayList<>();
+                facilities.add(Facility.AC);
+                facilities.add(Facility.WIFI);
+                if (capacity == 2) {
+                    facilities.add(Facility.ATTACHED_BATH);
+                }
+                facilities.add(Facility.HEATER);
+                facilities.add(Facility.STUDY_TABLE);
+
+                // Create Room object
+                Room room = new Room(
+                        roomNumber,
+                        hostelBlock,
+                        floor,
+                        capacity,
+                        roomType,
+                        hostelRent,
+                        facilities
+                );
+
+                rooms.add(room);
+                Log.d("HMSController", "Room created: " + room.toString());
+            }
+
+            // Save all rooms to Firebase
+            saveMultipleRooms(rooms);
+
+        } catch (JSONException e) {
+            Log.e("HMSController", "JSON parsing failed: " + e.getMessage());
+        }
+    }
+
+    // Method to save multiple rooms to Firebase database
+    private void saveMultipleRooms(List<Room> rooms) {
+        final int[] successCount = {0};
+        final int totalRooms = rooms.size();
+
+        if (totalRooms == 0) {
+            return;
+        }
+
+        for (Room room : rooms) {
+            DatabaseReference ref = FirebaseManager.getRootRef().child("rooms").push();
+            String roomId = ref.getKey();
+            room.setRoomId(roomId);
+
+            ref.setValue(room)
+                    .addOnSuccessListener(aVoid -> {
+                        successCount[0]++;
+                        Log.d("HMSController", "Room saved successfully. Count: " + successCount[0]);
+
+                        if (successCount[0] == totalRooms) {
+                            Log.d("HMSController", "All rooms saved successfully!");
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("HMSController", "Failed to save room: " + e.getMessage());
+                    });
+        }
     }
 
 

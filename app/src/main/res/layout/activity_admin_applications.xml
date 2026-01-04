@@ -6,9 +6,9 @@
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="?android:attr/colorBackground">
 
-    <!-- Heading -->
+    <!-- Top Bar -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -17,15 +17,26 @@
         android:paddingTop="14dp"
         android:paddingBottom="8dp">
 
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back"
+            app:tint="?attr/colorPrimary" />
+
+        <!-- Heading -->
         <TextView
             android:id="@+id/tvHeading"
             android:text="Applications"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#1E88E5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <!-- Section Title -->
@@ -34,12 +45,12 @@
         android:text="All Applications"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="?attr/colorOnBackground"
         android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <!-- Scrollable RecyclerView for Application Cards -->
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvApplications"
         android:layout_width="match_parent"

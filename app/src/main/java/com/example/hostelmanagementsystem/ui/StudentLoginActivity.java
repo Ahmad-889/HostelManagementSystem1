@@ -2,6 +2,9 @@ package com.example.hostelmanagementsystem.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
@@ -30,6 +33,32 @@ public class StudentLoginActivity extends AppCompatActivity {
 
         TextView register = findViewById(R.id.tvRegister);
         TextView adminLogin = findViewById(R.id.tvAdminLogin);
+
+        TextView tvRegister = findViewById(R.id.tvRegister);
+
+// Full text
+        String fullText = "Don’t have an account? Register here";
+
+// The part we want to color
+        String coloredPart = "Register here";
+
+// Create a SpannableString
+        SpannableString spannable = new SpannableString(fullText);
+
+// Find start and end indices of the colored part
+        int start = fullText.indexOf(coloredPart);
+        int end = start + coloredPart.length();
+
+// Apply color
+        spannable.setSpan(new ForegroundColorSpan(
+                        getResources().getColor(R.color.colorPrimary)), // teal color
+                start,
+                end,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+
+// Set the text
+        tvRegister.setText(spannable);
 
         login.setOnClickListener(v -> {
             String regNumber = regNo.getText().toString().trim();

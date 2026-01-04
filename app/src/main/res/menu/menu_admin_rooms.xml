@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Common menu items -->
+    <item
+        android:id="@+id/menu_theme"
+        android:title="Change Theme"
+        android:icon="@android:drawable/ic_menu_manage"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_portfolio"
+        android:title="My Portfolio"
+        android:icon="@android:drawable/ic_menu_view"
+        app:showAsAction="never" />
+
+    <!-- Admin Rooms only -->
+    <item
+        android:id="@+id/menu_add_sample_rooms"
+        android:title="Add Sample Rooms"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Logout"
+        android:icon="@android:drawable/ic_lock_power_off"
+        app:showAsAction="never" />
+
+
+</menu>

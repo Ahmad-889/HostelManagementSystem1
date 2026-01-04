@@ -39,6 +39,8 @@ public class AdminApplicationsActivity extends AppCompatActivity
         );
         rv.setAdapter(adapter);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         loadApplications();
     }
 

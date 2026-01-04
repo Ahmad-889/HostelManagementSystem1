@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="?android:attr/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:text="Add/Update Room"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#1E88E5"
+            android:textColor="?attr/colorPrimary"
             android:paddingBottom="16dp"/>
 
         <!-- Room Number -->
@@ -31,7 +32,9 @@
                 android:id="@+id/etRoomNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:textColor="?android:textColorPrimary"
+                android:textColorHint="?android:textColorSecondary"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Hostel Block -->
@@ -46,7 +49,9 @@
                 android:id="@+id/etHostelBlock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:textColor="?android:textColorPrimary"
+                android:textColorHint="?android:textColorSecondary"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Floor -->
@@ -61,7 +66,9 @@
                 android:id="@+id/etFloor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:textColor="?android:textColorPrimary"
+                android:textColorHint="?android:textColorSecondary"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Capacity -->
@@ -76,7 +83,9 @@
                 android:id="@+id/etCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:textColor="?android:textColorPrimary"
+                android:textColorHint="?android:textColorSecondary"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Room Type -->
@@ -86,7 +95,7 @@
             android:layout_marginTop="12dp"
             android:text="Room Type"
             android:textSize="14sp"
-            android:textColor="#666666"/>
+            android:textColor="?android:textColorSecondary"/>
 
         <Spinner
             android:id="@+id/spinnerRoomType"
@@ -108,7 +117,9 @@
                 android:id="@+id/etRent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:textColor="?android:textColorPrimary"
+                android:textColorHint="?android:textColorSecondary"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Facilities Section -->
@@ -119,38 +130,43 @@
             android:text="Facilities"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#333333"/>
+            android:textColor="?android:textColorPrimary"/>
 
         <CheckBox
             android:id="@+id/cbAC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="AC"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:textColor="?android:textColorPrimary"/>
 
         <CheckBox
             android:id="@+id/cbWiFi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WiFi"/>
+            android:text="WiFi"
+            android:textColor="?android:textColorPrimary"/>
 
         <CheckBox
             android:id="@+id/cbAttachedBath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Attached Bath"/>
+            android:text="Attached Bath"
+            android:textColor="?android:textColorPrimary"/>
 
         <CheckBox
             android:id="@+id/cbHeater"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Heater"/>
+            android:text="Heater"
+            android:textColor="?android:textColorPrimary"/>
 
         <CheckBox
             android:id="@+id/cbStudyTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Study Table"/>
+            android:text="Study Table"
+            android:textColor="?android:textColorPrimary"/>
 
         <!-- Action Buttons -->
         <LinearLayout
@@ -166,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cancel"
                 android:backgroundTint="#757575"
-                android:textColor="#fff"
+                android:textColor="?android:textColorPrimary"
                 android:layout_marginEnd="8dp"/>
 
             <Button
@@ -174,8 +190,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
-                android:backgroundTint="#1E88E5"
-                android:textColor="#fff"/>
+                android:backgroundTint="?attr/colorPrimary"
+                android:textColor="?android:textColorPrimary"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

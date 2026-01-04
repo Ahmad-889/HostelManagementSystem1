@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="?android:colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:text="Submit Application"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#1E88E5"
+            android:textColor="?attr/colorPrimary"
             android:paddingBottom="16dp"/>
 
         <!-- Room Info -->
@@ -27,15 +28,14 @@
             android:text="Room: 101, Block A"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#333333"
+            android:textColor="?android:textColorPrimary"
             android:paddingBottom="16dp"/>
 
         <!-- Semester -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Semester"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:hint="Semester">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSemester"
@@ -49,8 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="CGPA"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:hint="CGPA">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCgpa"
@@ -64,8 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Parent Contact"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:hint="Parent Contact">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etParentContact"
@@ -79,8 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Emergency Contact"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:hint="Emergency Contact">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmergencyContact"
@@ -96,7 +93,7 @@
             android:layout_marginTop="16dp"
             android:text="Note: Minimum CGPA of 2.0 is required for eligibility"
             android:textSize="12sp"
-            android:textColor="#666666"
+            android:textColor="?android:textColorSecondary"
             android:textStyle="italic"/>
 
         <!-- Action Buttons -->
@@ -113,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cancel"
                 android:backgroundTint="#757575"
-                android:textColor="#fff"
+                android:textColor="?android:textColorPrimary"
                 android:layout_marginEnd="8dp"/>
 
             <Button
@@ -121,8 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:backgroundTint="#1E88E5"
-                android:textColor="#fff"/>
+                android:backgroundTint="?attr/colorPrimary"
+                android:textColor="?android:textColorPrimary"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

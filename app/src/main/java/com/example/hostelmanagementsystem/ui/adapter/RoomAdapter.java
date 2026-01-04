@@ -68,7 +68,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         );
 
         // ---------- Availability ----------
-        if (room.isAvailable()) {
+        boolean isRoomAvailable = room.getCurrentOccupancy() < room.getCapacity();
+        if (isRoomAvailable) {
             holder.tvAvailability.setText("Available");
             holder.tvAvailability.setTextColor(
                     context.getResources().getColor(android.R.color.holo_green_dark)

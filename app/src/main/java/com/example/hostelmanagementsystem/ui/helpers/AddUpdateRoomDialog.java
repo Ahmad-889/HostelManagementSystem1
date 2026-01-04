@@ -3,6 +3,7 @@ package com.example.hostelmanagementsystem.ui.helpers;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +54,18 @@ public class AddUpdateRoomDialog extends Dialog {
 
         btnSave.setOnClickListener(v -> saveRoom());
         btnCancel.setOnClickListener(v -> dismiss());
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        if (getWindow() != null) {
+            getWindow().setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }
     }
 
     private void initializeViews() {
